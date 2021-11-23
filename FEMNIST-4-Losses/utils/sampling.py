@@ -54,6 +54,9 @@ def EMNIST_client_regenerate(data_train, label_train, writer_train, num_users):
     return dict_users
 
 def ratio_loss_data(data_train, label_train, writer_train, num_class):
+    '''
+    Create aux data - for each class, a corresponding set of idx
+    '''
     dict_users = {i: np.array([], dtype='int64') for i in range(num_class)}
     for class_index in range(num_class):
         idx_temp = np.where(label_train == class_index)
@@ -61,6 +64,9 @@ def ratio_loss_data(data_train, label_train, writer_train, num_class):
     return dict_users
 
 def EMNIST_client_imbalance(data_train, label_train, writer_train, num_users, minor_class, ratio):
+    '''
+    Create class imbalance in clients
+    '''
     # dict_users = {i: np.array([], dtype='int64') for i in range(num_users)}
     dict_raw = EMNIST_client_regenerate(data_train, label_train, writer_train, num_users)
     dict_users = dict_raw
